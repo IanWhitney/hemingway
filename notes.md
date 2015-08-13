@@ -38,28 +38,22 @@ https://vramon1958.files.wordpress.com/2015/01/hemingway.jpg
 
 > Hemingway's style is know for its precision, terseness and clarity. These are all features that I strive for in my code. Hemingway knew that this style came through rewriting.
 
-Writer's Have It Good
-  They get to publish their work
-  At some point, it's done
+Writers Have It Good
+  After publication, it's done
 
 Code is always a draft
 
 > Unless you are burning your program into some unalterable hardware, it can change. Most of us work in situations where the code changes constantly. It is never done
 
-We need to respect drafts
+This is to our benefit, if we allow it
 
-> Like writers, we should acknowledge the value drafts serve. Each one shows our growing knowledge of the code and our vision for where it should be.
+> Like writers, we can improve our code through each draft. Every time we improve the code, we show our growing knowledge of the code's purpose and our vision for what it should do. And, unlike writers, we don't have to stop.
 
-We need to understand how to improve our drafts
-  Refactoring
+How do we take advantage of this?
 
-> I see a lot of programmers try to *get things right* right away, because they have an aversion to improving their code through drafts.
+Refactoring is our Rewriting
 
-Maybe because:
-  We aren't sure how
-  Or we haven't seen any benefits 
-
-Hint: these two are related
+But only when we truly refactor
 
 Let's look at a common type of refactoring
 
@@ -85,33 +79,55 @@ end
 
 Allow people to name Lemurs with our collection of Snake names.
 
-How did our changes make this feature easier?
+Did our changes make implementing this feature easier?
 
-Did our changes make *any* feature easier?
+Did our changes make implementing *any* feature easier?
 
-I call this a Stylistic Refactoring. Valuable, yes. But not in terms of design. Let's look at a writer's example:
+What would a similar change look like in a novel?
 
 Call me Ishmael joke
 
 > I stole this joke from Gary Larsen's 'The Far Side'. I'd show you an image, but copyright, etc.
 
+Stylistic Refactoring
+
+> I call this a Stylistic Refactoring. Valuable, yes. But it doesn't change your code's structure, its design
+
 Names are important
 
-But, improving your draft code means improving its structure
+_Refactoring: Improving the *Design* of Existing Code_
 
-Refactoring: Improving the *Design* of Existing Code
+> Emphasis mine. Design, in this case, means the structure of your code.
 
-Refactoring, when done right, moves your code from First Draft to Second, and beyond
+Going back to a writing example:
 
-Heuristic: Does it change the implementation of a new feature
+Austen
 
-Before
+> This is illegible, I realize. It's a Jane Austen manuscript, and you can see that the changes here are wholesale deletions, reorganizations. This goes beyond style and into structure. 
+
+Refactoring is changing of your code's structure
+
+And it is through Refactoring that your code will move from First Draft, to Second and Beyond
+
+How can you tell when you are actually Refactoring?
+
+Does it change the implementation of a new feature?
+
+> Let's go back to our previous example. We left the code like this:
+
+```
+def lemur_renamer(lemurs)
+  lemurs.each { |lemur| lemur.update_name(LemurNames.random) }
+end
+```
+
+> And we want to let people name lemurs with a their chosen name. We can do that without altering the signature of this method, sure:
 
 ```
 def lemur_renamer(lemurs)
   lemurs.each do |lemur|
-    if using_snake_name?
-      lemur.update_name(SnakeNames.random)
+    if lemur.owner.name_list.any?
+      lemur.update_name(lemur.owner.name_list.random)
     else
       lemur.update_name(LemurNames.random)
     end
@@ -119,7 +135,7 @@ def lemur_renamer(lemurs)
 end
 ```
 
-After
+> Users of this method don't care about this change, so structurally this method hasn't really changed. But its implementation is certainly worse. Let's try that again, but this time tackle the code's structure
 
 ```
 def lemur_renamer(lemurs, names = LemurNames)
@@ -127,12 +143,26 @@ def lemur_renamer(lemurs, names = LemurNames)
 end
 ```
 
-Importantly, you can't know this in advance. Otherwise you'd just write a final draft.
+> Existing clients of this code probably aren't affected by this at all, but now it's simple for us to pass in any collection of names.
+
+We:
+
+- Wrote a draft
+- Learned about a shortcoming of our draft
+- Applied that to a change in the structure
+- Ended up with a better draft
+
+This process, I think, is unalterable.
+
+If it weren't, we could write perfect software the first time. 
+
+As likely as a classic novel with your first draft
+
+But it only works if you make the structural change
+
+Otherwise you're just renaming characters in an increasingly convoluted novel
 
 You have to write that first terrible draft, learn the structure and then **improve** the structure
 
-So, why don't we write it like this from the beginning?
-We can't
-it's a bad idea
 https://twitter.com/jeremydmiller/status/568797862441586688
 http://martinfowler.com/bliki/Yagni.html
