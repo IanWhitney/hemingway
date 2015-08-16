@@ -29,6 +29,8 @@ Writers keep changing words
 The Best Writing Is Rewriting
   - E. B. White
 
+Writing is Rewriting
+
 > Writers know the value of rewriting. They know that the final work is built on piles and piles of discarded drafts. Ernest Hemingway was blunt about drafts:
 
 The first draft of anything is shit
@@ -36,28 +38,23 @@ The first draft of anything is shit
 
 https://vramon1958.files.wordpress.com/2015/01/hemingway.jpg
 
-> Hemingway's style is know for its precision, terseness and clarity. These are all features that I strive for in my code. Hemingway knew that this style came through rewriting.
+> Hemingway's style is known for its precision, terseness and clarity. These are all features that I strive for in my code. Hemingway knew that this style came through rewriting. As programmers we should learn that good coding style only comes through rewriting.
 
-Writers Have It Good
-  After publication, it's done
+Hemingway sample
 
-Code is always a draft
+> Clear, simple, economical
 
-> Unless you are burning your program into some unalterable hardware, it can change. Most of us work in situations where the code changes constantly. It is never done
+But it didn't start like this
 
-This is to our benefit, if we allow it
+Hemingway photo
 
-> Like writers, we can improve our code through each draft. Every time we improve the code, we show our growing knowledge of the code's purpose and our vision for what it should do. And, unlike writers, we don't have to stop.
+This one's from Jane Austen
 
-How do we take advantage of this?
+Austen photo
 
-Refactoring is our Rewriting
+> I realize that neither of these are exactly legible, but they share some things in common. A lot of deletions, some changes in word choice.
 
-But only when we truly refactor
-
-Let's look at a common type of refactoring
-
-Before:
+In code, that might be something like this:
 
 ```
 def lemur_renamer(lemurs)
@@ -67,7 +64,7 @@ def lemur_renamer(lemurs)
 end
 ```
 
-After:
+Becomes:
 
 ```
 def lemur_renamer(lemurs)
@@ -75,45 +72,19 @@ def lemur_renamer(lemurs)
 end
 ```
 
-> In this we've changed an opaque variable, x, to a descriptive one, lemur. We've replaced loop with a more idiomatic block. And we changed how we get a random lemur name. This is all to the good. Then we get a new feature request
+> In this we've changed an opaque variable, x, to a descriptive one, lemur. We've replaced loop with a more idiomatic block. And we changed how we get a random lemur name. This is all to the good.
 
-Allow people to name Lemurs with our collection of Snake names.
+But how much has our code actually changed?
 
-Did our changes make implementing this feature easier?
+> We still loop through a collection of lemurs and give each one a new, randomly selected Lemur Name.
 
-Did our changes make implementing *any* feature easier?
-
-What would a similar change look like in a novel?
+Let's look another writing example
 
 Call me Ishmael joke
 
 > I stole this joke from Gary Larsen's 'The Far Side'. I'd show you an image, but copyright, etc.
 
-Stylistic Refactoring
-
-> I call this a Stylistic Refactoring. Valuable, yes. But it doesn't change your code's structure, its design
-
-Names are important
-
-_Refactoring: Improving the *Design* of Existing Code_
-
-> Emphasis mine. Design, in this case, means the structure of your code.
-
-Going back to a writing example:
-
-Austen
-
-> This is illegible, I realize. It's a Jane Austen manuscript, and you can see that the changes here are wholesale deletions, reorganizations. This goes beyond style and into structure. 
-
-Refactoring is changing of your code's structure
-
-And it is through Refactoring that your code will move from First Draft, to Second and Beyond
-
-How can you tell when you are actually Refactoring?
-
-Does it change the implementation of a new feature?
-
-> Let's go back to our previous example. We left the code like this:
+Are our code changes any more significant than changing a character's name?
 
 ```
 def lemur_renamer(lemurs)
@@ -121,7 +92,25 @@ def lemur_renamer(lemurs)
 end
 ```
 
-> And we want to let people name lemurs with a their chosen name. We can do that without altering the signature of this method, sure:
+> Names are important, yes. This code is Stylistically better than it was. But structurally it is exactly the same.
+
+Structure and Style
+
+> In novel terms: if you've read Harry Potter, think how different the story would be if Rowling had revealed Snape's back story in the earliest books. Telling it at the end is a structural story telling choice.
+
+> In code terms, structure matters when we want to add or change a feature.
+> Code that is structurally different will differ when making changes
+
+
+Feature: Let people name lemurs with their own sets of lemur names
+
+```
+def lemur_renamer(lemurs)
+  lemurs.each { |lemur| lemur.update_name(LemurNames.random) }
+end
+```
+
+So, how do we do that?
 
 ```
 def lemur_renamer(lemurs)
@@ -135,7 +124,19 @@ def lemur_renamer(lemurs)
 end
 ```
 
-> Users of this method don't care about this change, so structurally this method hasn't really changed. But its implementation is certainly worse. Let's try that again, but this time tackle the code's structure
+> This one requires no change to any existing client code. But it introduces a conditional that is likely to grow.
+
+Like this?
+
+```
+def lemur_renamer(lemurs, names)
+  lemurs.each { |lemur| lemur.update_name(names.random) }
+end
+```
+
+> This requires us to change any client code to handle the new signature. But it won't grow as we get more name collections.
+
+Like this?
 
 ```
 def lemur_renamer(lemurs, names = LemurNames)
@@ -143,26 +144,50 @@ def lemur_renamer(lemurs, names = LemurNames)
 end
 ```
 
-> Existing clients of this code probably aren't affected by this at all, but now it's simple for us to pass in any collection of names.
+> Existing client code can remain unchanged and use the default, new code can pass in their own name collections.
 
-We:
+Refactoring
+Improving the **design** of existing code
+
+
+In code, we learn the structure our code should take by
 
 - Wrote a draft
 - Learned about a shortcoming of our draft
 - Applied that to a change in the structure
 - Ended up with a better draft
 
+What's my choice
+
+```
+def lemur_renamer(lemurs, names = LemurNames)
+  lemurs.each { |lemur| lemur.update_name(names.random) }
+end
+```
+
+- Red
+- Green
+- Refactor
+
+- Red
+- Green
+- Stylistic
+
+- Refactor
+- Test
+- Implement
+
 This process, I think, is unalterable.
 
 If it weren't, we could write perfect software the first time. 
 
-As likely as a classic novel with your first draft
-
 But it only works if you make the structural change
 
-Otherwise you're just renaming characters in an increasingly convoluted novel
+How do you tell?
 
-You have to write that first terrible draft, learn the structure and then **improve** the structure
+- How would I have implemented this feature before the change?
+- How would I implement it after?
 
-https://twitter.com/jeremydmiller/status/568797862441586688
-http://martinfowler.com/bliki/Yagni.html
+If it is different, you have made a structural change to your code
+
+If it is *easier*, you have made a good structural change
