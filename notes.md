@@ -1,19 +1,3 @@
-Even Hemingway Wasn't Hemingway
-
-“The first draft of anything is shit.” - Ernest Hemingway
-
-Ernest Hemingway didn't write first drafts of sparse, clear prose. He wrote terrible first drafts and then rewrote them, over and over, until the design of the prose was right.
-
-For Hemingway, and every good writer, Writing is Rewriting.
-
-As programmers our first drafts are terrible as well. Perhaps we clean up that first draft with some stylistic tweaks that make it look nicer but that don't affect the underlying design. How often do we really dig in to that first draft and tear it apart, redesigning it until it is sparse and clear? Not often enough. And that's to our detriment.
-
-For good developers, Design is Refactoring.
-
-That sounds easy, but all too frequently refactoring doesn't lead to appreciable changes in the code's design. How do you use refactoring to improve code design? And how do you identify when you're just changing the surface style of your code? What's the difference between coding style and design, anyway? I'll answer all of these questions, hopefully, and show you how to take your code from a first draft to a clear, sparse design.
-
--------
-
 # Even Hemingway Wasn't Hemingway
 
 ### Ian Whitney
