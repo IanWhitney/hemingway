@@ -29,7 +29,8 @@
 
 # Writing is Rewriting
 
-Note: Writers even rewrite their own maxim about rewriting. They know the value of rewriting. It clarifies their early drafts and sharpens their message.. Ernest Hemingway was blunt about drafts
+Note:
+Writers value rewriting so much that they even rewrite their own maxim about rewriting. If they like rewriting so much, it must have value. They know the value of rewriting. It clarifies their early drafts and sharpens their message. Ernest Hemingway was blunt about drafts
 
 
 
@@ -47,42 +48,94 @@ And here he is doing some of that rewriting. Taking a draft and revising it to s
 _The Sun Also Rises_
 
 Note:
-I'm focusing on Hemingway because his style is known for precision, terseness and clarity. These are all features that I strive for in my code. Hemingway's novels weren't first drafts, they were meticulously re-written. And the approach of writers should be of interest to us, because like them, we are writing stories.
+I'm focusing on Hemingway because his style is known for precision, terseness and clarity. These are all features that I strive for in my code.
 
 
-# Story?
-
-Code tells a story.
+# Wait, coding isn't writing.
 
 
-# Code has drafts
+# Sure it is!
+
+
+# It Tells Stories
+
+```ruby
+5.times { |count| puts "#{count}!" }
+```
+
+Note:
+Sometimes the story is dumb. But it always tells a story. It might be a terse, simple story. Or maybe it's complex with a lot of twists and turns.
+
+
+# It Has Drafts
+
+<img src="images/drafts.png" />
+
+
+# It Has Rewrites
+## We just call it refactoring
+
+
+### Writing Is Rewriting
+###   We Rewrite Code
+###    Therefore...
+
+
+### Coding Is Writing!
+#### Note: I never did take a logic class
+
+
+#### But if coding is writing
+#### And professional, famous writers can't write 
+#### Then what hope do I have?
+
 
 Just like a 'real' writer, you rewrite your code.
 As you work with your code, you find ways to improve it.
 As you learn more about what your code should do, you refactor it to make it do that.
 
 
-# Not every change is to the good
-
-As long as we're working with a codebase, we're rewriting it.
-But, you can rewrite multiple ways.
+# None!
 
 
-Some ways are useful, some not
-Some are powerful, some not
+# Actually, 'real' writers have it better
+# They get to publish!
+##### Well, sometimes
 
 
-I'm going to compare two ways of rewriting code
+# But your code is never finished
 
 
-By the end of the talk, I hope to show you when to use these two approaches
+# Which means that it's always a draft
+
+
+# So you better get really good at rewriting
+
+
+# But, wait
+## You already told us how to fix our code
+## Refactoring
+
+
+# Well, kind of
+
+
+Saying "just refactor" is kind of teaching someone to dance by dropping them off at Radio Music Hall and yelling "Good Luck!"
+
+
+There are a lot of ways to Refactor. Each with their own plusses, minuses and techniques.
+
+
+So we're going to look at just two.
+
+
+And since code is writing, turns out those 'real' writers have the same techniques.
 
 
 To start, let's look at Hemingway again
 
 
 <img src="images/hemingway.jpg" />
-
 
 Note:
 What's he doing here?
@@ -100,7 +153,7 @@ end
 ```
 
 Note:
-I have an app that lets people manage their lemur collections. Lemurs (or their owners) get bored of names pretty quickly, so they want to be able to rename all of their lemurs at once using randomly picked names. We follow Hemingway's example
+lemur.io lets people manage their lemur collections. Lemurs (or their owners) get bored of their names pretty quickly, so the owners want to be able to rename all of their lemurs at once using randomly picked names. This code works, but we can do some rewriting like what we saw Hemingway do.
 
 
 # First Draft:
@@ -120,130 +173,133 @@ end
 ```
 
 Note:
-In this we've changed an opaque variable, x, to a descriptive one, lemur. We've replaced loop with a more idiomatic block. And we changed how we get a random lemur name. This is all to the good. But...
+In this we've changed an opaque variable, x, to a descriptive one, lemur. We've replaced loop with a more idiomatic block. And we changed how we get a random lemur name. This is all to the good. Style changes like this are massive boons to everyone who has to look at our code.
 
 
-# What _Actually_ Changed?
+#  Style Matters
+## I put money in his hand -- he gave me a stuffed dog; I sure do like economic systems based on exchange of goods for fiat currency!
 
 
-# First Draft:
-```ruby
-def lemur_renamer(lemurs)
-  lemurs.each do |x|
-    x.update_name(LemurNames.a_lemur_name)
-  end
-end
-```
----
-# Rewritten:
-```ruby
-def lemur_renamer(lemurs)
-  lemurs.each { |lemur| lemur.update_name(LemurNames.random) }
-end
-```
-
-Note:
-We still loop through a collection of lemurs and give each one a new, randomly selected Lemur Name. Our code is clearer, yes. But it is exactly the same code.
+# But
 
 
 # The Story Remained the Same
 
 
-# We changed **Style**
-# We did not change **Structure**
-
-
-# Rewriting Approach 1, Stylistic
-
-Stylistic rewriting is great for when you're trying to _clarify_ code. Variable names, idioms, style guides. 
-
-# What it does
-- Clarifies your story
-- Eases comprehension
-
-
-# What it doesn't do
-- Change the story your code tells
-
-
-# Changing your story
-- ~~Call me Bill~~
-- ~~Call me Warren~~
-- ~~Call me Al~~
-- ~~Call me Roger~~
-- **Call me Ishmael**
-
-Note:
-I stole this joke from Gary Larsen's 'The Far Side'. I'd show you an image, but copyright, etc. Giving Ishmael a good name is important, but structurally it doesn't affect the story that Melville is telling. In the story our code is telling, our changes were similarly ineffective.
-
-
-
-# How many tickets/issues/stories are
-
-> Improve our variable names
-
-# And how many are
-
-> Change the code to do something new/better?
-
-Most of what we do is change the story our code tells.
-
-
-# Structure is Important
-
-
-<img src="images/hemingway.jpg" />
-
-Note:
-Here's Ernest again. His rewrites also involved large structural changes. He'd do things like start writing about one character, change his mind and then make the book about a different character. Not just change the name, like that Ishmael joke; a previously secondary character would simply become the main character 
-
-
-# Wait. What?
-
-
-# Hemingway didn't know the main character of his own book
-
-
-# Structure is Knowledge
-
-Note:
-Hemingway wrote a draft, learned what sort of story he actually wanted to tell, and re-wrote. We write code, learn what story it actually needs to tell, and refactor.
-
-
-# Our Current Story
+# First Draft:
+```ruby
+def lemur_renamer(lemurs)
+  lemurs.each do |x|
+    x.update_name(LemurNames.a_lemur_name)
+  end
+end
+```
+---
+# Rewritten:
 ```ruby
 def lemur_renamer(lemurs)
   lemurs.each { |lemur| lemur.update_name(LemurNames.random) }
 end
 ```
 
-> "Update each lemur with a random name from LemurNames"
+Note:
+We still loop through a collection of lemurs and give each one a new, randomly selected Lemur Name. Our code is clearer, yes. But the story it tells is the same.
 
 
-# The New Story
 
-> Feature Request: Users can maintain their own set of names that are used when renaming their lemurs.
-
-> Update each lemur with a random name from the user, if present, or from Lemur Names.
+# We changed Style
+# We did not change Structure
 
 
-# How do we tell this story?
-
-
-## Option One
-```ruby
-def lemur_renamer(lemurs)
-  names = owner.name_list.any? ? owner.name_list : LemurNames
-
-  lemurs.each { |lemur| lemur.update_name(names.random) }
-end
-```
+# Stylistic Refactoring
 
 Note:
-This method's story is now: First I figure out what set of names to use, then I update each lemur with a random name. This is not a very concise story, and it might also surprise clients of this code, since they can't see or control which set of names are used.
+Martin Fowler calls these kinds of refactorings 'Litter-Pickup' and  'Comprehension Refactoring'. I prefer stylistic as a term to encompass both of those ideas
 
 
-## Option Two
+# Stylistic Refactoring
+### What it does
+- Clarifies your story
+- Eases comprehension
+
+Note:
+Stylistic refactoring is great for when you're trying to _clarify_ code. Variable names, idioms, style guides.
+
+
+# Stylistic Refactoring
+### What it doesn't do
+- Change the story your code tells
+
+Note:
+You can make your story easier to understand, but you're not going to change the plot.
+
+
+# How Much of Your Job is
+- Improve our coding style
+- Change the code to do something new/better?
+
+Note: 
+Most of my job, and I suspect most of yours, is changing the story my code tells. That tells me that as important as comprehensible code is, I probably can't spend my entire day working on it.
+
+
+# How do we change our stories?
+
+
+# Let's check in with Hemingway
+
+<img src="images/hemingway.jpg" />
+
+Note:
+Here's Ernest again. His rewrites also involved large structural changes. He'd do things like start writing about one character, change his mind and then make the book about a different character. Not just change the name; a previously secondary character simply became the main character 
+
+
+# Wait. What?
+Hemingway didn't know the main character of his own book?
+
+
+# You Can't Know Story In Advance
+## You Discover it through drafts
+
+
+- Write a draft, learn about your story
+- Rewrite, applying that knowledge to the draft
+- Repeat
+
+
+# Write a draft
+This part's easy. All we do is write drafts.
+
+
+# Learn about your story
+- Bugs!
+- Feature requests
+- Code that hard to use or test
+
+Note:
+These are probably the main ways we learn what our stories should be. The code does not do what we want it to do, so we want to have it do something different.
+
+
+# Apply our new knowledge
+<img src="images/refactoringBook.jpg" />
+
+Note:
+That's most of this book, and how you do this is going to depend on what kind of knowledge you are trying to apply. Let's take a look at a simple example.
+
+
+# Our Current Knowledge
+## People want to rename lemurs with one of our randomly selected names
+
+
+# Our Knowledge Changes
+> Feature Request: Users can maintain their own set of names that are used when renaming their lemurs.
+
+
+# Our New Knowledge
+## Update each lemur with a random name from the user, if present, or from Lemur Names.
+
+
+# Now Change Our Story
+
 ```ruby
 def lemur_renamer(lemurs, names = LemurNames)
   lemurs.each { |lemur| lemur.update_name(names.random) }
@@ -251,56 +307,67 @@ end
 ```
 
 Note:
-This story is more precise. Update each lemur with a random name from the provided names, or from Lemur Names
+This is the 'add_parameter' refactoring pattern. And it doesn't look like much, but it has changed the story our code tells. Update each lemur with a random name from the provided names, or from Lemur Names
 
 
-# We changed **Structure**
-# We did not change **Style**
+# We changed Structure
+# We did not change Style
 
 
-# Structure is Design
-
-<img src="images/refactoringBook.jpg" />
-
+# Structural Refactoring
 
 Note:
-Almost none of this book is about changing your code's style. It's patterns are almost entirely structural changes. A very simple one, "add parameter", is what we followed in our lemur_renamer code.
+Fowler uses several terms for this "Prepatory", "Planned", "Long Term". But those cover *when* you'd do the refactoring, not *what* you're actually doing. So I like the term "Structural", since we're changing Structure..
 
 
-# Structure is Knowledge
+# Structural Refactoring
+- Adds new knowledge to the application
+
+
+
+# Structural Refactoring
+### What it does
+- Changes your story
+- Encodes your new knowledge in the code
 
 Note:
 Structural change is great for encoding new knowledge into your system. Before we didn't know that more than one set of lemur names was necessary, now our story clearly states than _any_ collection of names can be used.
 
 
-# Stylistic Changes
-- Clarify intent
-- Improve readability
-- Fast
+# Structural Refactoring
+### What it doesn't do
+- Make you a rockstar
 
 
-# Structural Changes
-- Changes features
-- Adds new knowledge to the application
-- Slower
+Because rockstars are _perfect_
+They don't need drafts, refactoring or any of that.
+They just get it **right**
 
 
-# You can know style in advance
-# You can not know structure
+They also don't exist.
 
 
-# The Magic Process
-## We learn the structure our code should take by
-1. Write a draft
-2. Learn about a shortcoming of our draft
-3. Apply structural change
-4. Go To 2
+This is not a surprise. We all know that rockstars are mythical.
 
 
-# Forever
+But yet...
 
 
-# This process, I think, is unalterable
+We look at code we wrote and are sad
+We want to write great code right away
+We want to be rockstars
+
+Every writer has the same secret. 
+Write, then rewrite and rewrite and rewrite.
+
+Note:
+And rewrite, and rewrite. Forever. Hemingway wasn't a rockstar. No author you've ever read was a rockstar.
+
+
+# Admit That Your Code is a Draft
+# Enjoy that you know more now then you knew then
+# Be proud to make it better
+# But realize that it's still a draft
 
 
 # Even Hemingway wasn't Hemingway
