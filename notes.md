@@ -4,7 +4,24 @@
 -  https://github.com/ianwhitney/hemingway
 
 
+# This is a talk about refactoring
+
+
+#### Except, I'm not going to tell you how to refactor
+
+
+#### I will talk about types of refactoring, and what they offer
+
+
+#### Mostly, I want to talk about why you should be happy to refactor
+
+
+#### And how we can learn from 'real' writers
+
+
 ### Writers keep changing words
+Note:
+Real writers, like Hemingway, like to keep changing their words....
 
 
 ### ~~Writers keep changing words~~
